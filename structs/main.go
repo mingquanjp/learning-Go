@@ -23,6 +23,9 @@ func main() {
 		},
 	}
 	quan.print()
+	quanPinter := &quan
+	quanPinter.updateName("Quannn Nguyennn")
+	quan.print()
 	quan.updateName("John")
 	quan.print()
 
