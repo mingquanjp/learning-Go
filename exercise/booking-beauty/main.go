@@ -1,9 +1,16 @@
-package exercise
+package main
 
 import (
 	"fmt"
 	"time"
 )
+
+func main() {
+	date := "7/2/2026 15:04:03"
+	fmt.Println(Schedule(date))
+	fmt.Println(Description(date))
+	fmt.Println("Anniversary:", AnniversaryDate())
+}
 
 // Schedule returns a time.Time from a string containing a date.
 func Schedule(date string) time.Time {
@@ -48,6 +55,5 @@ func Description(date string) string {
 // AnniversaryDate returns a Time with this year's anniversary.
 func AnniversaryDate() time.Time {
 	timeNow := time.Now()
-	return time.Date(timeNow.Year(),  timeNow.Month(), timeNow.Day(), 0, 0, 0, 0, timeNow.Location())
+	return time.Date(timeNow.Year(), timeNow.Month(), timeNow.Day(), 0, 0, 0, 0, timeNow.Location())
 }
-

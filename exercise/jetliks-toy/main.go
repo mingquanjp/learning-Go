@@ -1,23 +1,29 @@
-package exercise
+package main
 
 import "fmt"
 
-// TODO: define the 'Car' type struct
-type Car struct {
-	battery int
-	batteryDrain int	
-	speed int
-	distance int
+func main() {
+	car := NewCar(10, 20)
+	fmt.Println(car.DisplayDistance())
+	fmt.Println(car.DisplayBattery())
+	fmt.Println("Can finish:", car.CanFinish(40))
 }
 
+// TODO: define the 'Car' type struct
+type Car struct {
+	battery      int
+	batteryDrain int
+	speed        int
+	distance     int
+}
 
 // NewCar creates a new remote controlled car with full battery and given specifications.
 func NewCar(speed, batteryDrain int) Car {
 	return Car{
-		battery:100, 
-		speed: speed,
+		battery:      100,
+		speed:        speed,
 		batteryDrain: batteryDrain,
-		distance: 0,
+		distance:     0,
 	}
 }
 
@@ -32,7 +38,6 @@ func NewTrack(distance int) Track {
 		distance: distance,
 	}
 }
-
 
 // Drive drives the car one time. If there is not enough battery to drive one more time,
 // the car will not move.
@@ -49,15 +54,12 @@ func NewTrack(distance int) Track {
 // CanFinish checks if a car is able to finish a certain track.
 func CanFinish(car Car, track Track) bool {
 	scale := float64(car.battery / car.batteryDrain)
-	if float64(car.speed) * scale >= float64(track.distance){
+	if float64(car.speed)*scale >= float64(track.distance) {
 		return true
 	}
 	return false
 
 }
-
-
-
 
 // TODO: define the 'Drive()' method
 func (car Car) Drive() {
@@ -68,12 +70,12 @@ func (car Car) Drive() {
 	car.battery -= car.batteryDrain
 }
 
-func (car Car) DisplayDistance() string{
+func (car Car) DisplayDistance() string {
 	return fmt.Sprintf("Driven %d meters", car.distance)
 }
 
-func (car Car) DisplayBattery() string{
-	return fmt.Sprintf("Battery at %d%", car.battery)
+func (car Car) DisplayBattery() string {
+	return fmt.Sprintf("Battery at %d%%", car.battery)
 }
 
 func (car Car) CanFinish(trackDistance int) bool {

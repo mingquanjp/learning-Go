@@ -1,4 +1,12 @@
-package exercise
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Per hour:", CalculateWorkingCarsPerHour(100, 80))
+	fmt.Println("Per minute:", CalculateWorkingCarsPerMinute(100, 80))
+	fmt.Println("Cost:", CalculateCost(37))
+}
 
 // CalculateWorkingCarsPerHour calculates how many working cars are
 // produced by the assembly line every hour.

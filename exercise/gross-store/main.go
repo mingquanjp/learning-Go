@@ -1,4 +1,14 @@
-package exercise
+package main
+
+import "fmt"
+
+func main() {
+	units := Units()
+	bill := NewBill()
+	AddItem(bill, units, "eggs", "dozen")
+	quantity, ok := GetItem(bill, "eggs")
+	fmt.Println("Bill:", bill, "eggs:", quantity, "found:", ok)
+}
 
 // Units stores the Gross Store unit measurements.
 func Units() map[string]int {
@@ -19,7 +29,7 @@ func NewBill() map[string]int {
 
 // AddItem adds an item to customer bill.
 func AddItem(bill, units map[string]int, item, unit string) bool {
-	if _,exists := units[unit]; !exists {
+	if _, exists := units[unit]; !exists {
 		return false
 	}
 	bill[item] = units[unit]
@@ -31,16 +41,16 @@ func AddItem(bill, units map[string]int, item, unit string) bool {
 
 // RemoveItem removes an item from customer bill.
 func RemoveItem(bill, units map[string]int, item, unit string) bool {
-	if _,exists := bill[item]; !exists {
+	if _, exists := bill[item]; !exists {
 		return false
 	}
-	if _,exists := units[unit]; !exists {
+	if _, exists := units[unit]; !exists {
 		return false
 	}
 	newQuantity := bill[item] - units[unit]
-	if newQuantity < 0{
+	if newQuantity < 0 {
 		return false
-	}else if newQuantity ==0 {
+	} else if newQuantity == 0 {
 		delete(bill, item)
 	}
 	bill[item] = newQuantity
@@ -50,7 +60,7 @@ func RemoveItem(bill, units map[string]int, item, unit string) bool {
 
 // GetItem returns the quantity of an item that the customer has in his/her bill.
 func GetItem(bill map[string]int, item string) (int, bool) {
-	if _,exists := bill[item]; !exists {
+	if _, exists := bill[item]; !exists {
 		return 0, false
 	}
 	return bill[item], true

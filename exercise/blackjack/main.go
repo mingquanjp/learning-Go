@@ -1,10 +1,17 @@
-package exercise
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Ace:", ParseCard("ace"))
+	fmt.Println("First turn:", FirstTurn("ace", "king", "six"))
+}
 
 // ParseCard returns the integer value of a card following blackjack ruleset.
 func ParseCard(card string) int {
 	switch card {
-    case "ace":
-        return 11
+	case "ace":
+		return 11
 	case "two":
 		return 2
 	case "three":
@@ -25,7 +32,7 @@ func ParseCard(card string) int {
 		return 10
 	default:
 		return 0
-    }
+	}
 }
 
 // FirstTurn returns the decision for the first turn, given two cards of the
@@ -41,9 +48,9 @@ func FirstTurn(card1, card2, dealerCard string) string {
 		} else {
 			return "S"
 		}
-	case sumUp >=17 && sumUp <=20:
+	case sumUp >= 17 && sumUp <= 20:
 		return "S"
-	case sumUp >=12 && sumUp <=16:
+	case sumUp >= 12 && sumUp <= 16:
 		if ParseCard(dealerCard) >= 7 {
 			return "H"
 		} else {
